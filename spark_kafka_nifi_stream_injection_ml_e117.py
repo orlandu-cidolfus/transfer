@@ -15,7 +15,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 spark = SparkSession\
     .builder\
     .master('local[2]')\
-    .appName('injection_predictor')\
+    .appName('injection_predictor_e117')\
     .config('spark.jars.packages', 'org.mongodb.spark:mongo-spark-connector_2.12:2.4.1')\
     .config("spark.streaming.stopGracefullyOnShutdown", "true") \
     .getOrCreate()
@@ -174,7 +174,7 @@ kafka_target_df.printSchema()
 
 nifi_query = kafka_target_df \
         .writeStream \
-        .queryName("Notification Writer") \
+        .queryName("Notification Writer_2") \
         .format("kafka") \
         .option("kafka.bootstrap.servers", "fluster-namenode.com:6667") \
         .option("topic", "e117_injection_pred") \
