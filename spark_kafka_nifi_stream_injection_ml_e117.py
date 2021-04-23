@@ -160,7 +160,7 @@ explode_df = value_df.selectExpr("value.timCool1", "value.strCushion1", \
 #Print schema to review
 #explode_df = explode_df.drop('reason')
 explode_df.printSchema()
-pred_results_stream = model.transform(explode_df)
+pred_results_stream = model.transform(explode_df.na.drop)
 #Remove feature column
 pred_results_stream_simplified = pred_results_stream.selectExpr("timCycle", "prediction")
 
